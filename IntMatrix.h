@@ -6,9 +6,12 @@ namespace mtm
 {
     class IntMatrix
     {
+        private:
         Dimensions dim;
         int element_num;
         int* data;
+        const int* getData() const;//debug
+        const mtm::Dimensions& getDim() const;//debug
 
         public:
         IntMatrix(const Dimensions dimensions, const int init_val = 0);
@@ -23,27 +26,28 @@ namespace mtm
         IntMatrix operator-() const;
         const int& operator() (const int row, const int col) const;
         int& operator() (const int row, const int col);
+        friend std::ostream& operator<<(std::ostream& os, const IntMatrix& mat);
 
         //to check:
-        friend std::ostream& operator<<(std::ostream& os, const IntMatrix& mat);
+        
 
         //to do:
         
+        //to do end
 
-        const int* getData() const;//debug
-        const mtm::Dimensions& getDim() const;//debug
+        
     };
 
 
     IntMatrix operator+(const IntMatrix& a, const IntMatrix& b);
-    
-    //to check:
-    
     IntMatrix operator-(const IntMatrix& a, const IntMatrix& b);
     IntMatrix operator+(const IntMatrix& a, const int b);
     IntMatrix operator+(const int a, const IntMatrix& b);
-    void operator+=(IntMatrix& a, const int b);
-    void operator+=(const int a, IntMatrix& b);
+    IntMatrix& operator+= (IntMatrix& a, const int b);
+    IntMatrix& operator+=(const int a, IntMatrix& b);
+
+    //to check:
+    
 
     //to do:    
     
