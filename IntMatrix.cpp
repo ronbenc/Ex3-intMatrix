@@ -175,6 +175,40 @@ namespace mtm
     {
         return b += a;        
     }
+
+    IntMatrix operator<(IntMatrix& a, const int b)
+    {
+        int height = a.height();
+        int width = a.width();
+        IntMatrix matrix = IntMatrix(Dimensions(height, width));
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                matrix(i , j) = (matrix(i , j) < b ? 1 : 0);
+            }        
+        }
+        return matrix;
+    }
+
+    IntMatrix operator>(const IntMatrix& a, const int b)
+    {
+
+    }
+
+    IntMatrix& IntMatrix::negateMatrix()
+    {
+        int height = this->height();
+        int width = this->width();
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                this->(i , j) = (this->(i , j) == 0 ? 1 : 0);
+            }        
+        }
+        return *this;
+    }
     
     const int* IntMatrix::getData() const
     {
