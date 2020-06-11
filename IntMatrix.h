@@ -32,6 +32,11 @@ namespace mtm
 
         const int* getData() const;//debug
         const mtm::Dimensions& getDim() const;//debug
+
+        class iterator;//Capital i?
+        
+        iterator begin();
+        iterator end(); 
     };
 
 
@@ -47,7 +52,24 @@ namespace mtm
 
     //to do:    
     
+    class IntMatrix::iterator //Capital i?
+    {
+        const IntMatrix* intMatrix;
+        int index;
+        iterator(const IntMatrix* intMatrix, int index);
+        friend class IntMatrix;
+
+    public:
+        int& operator*() const;
+        iterator& operator++();
+        iterator operator++(int);
+        bool operator==(const iterator& it) const;
+        bool operator!=(const iterator& it) const;
+        iterator(const iterator&) = default;
+        iterator& operator=(const iterator&) = default;
+    };
 
 } // namespace mtm
+
 
 #endif //EX3_INTMATRIX_H

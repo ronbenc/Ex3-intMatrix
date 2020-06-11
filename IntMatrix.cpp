@@ -1,5 +1,6 @@
 #include "IntMatrix.h"
 #include "Auxiliaries.h"
+//#include <assert.h>
 
 namespace mtm
 {
@@ -199,4 +200,50 @@ namespace mtm
     {
         return this->dim;
     }
+
+
+    //*************iterator********************************************************
+
+    IntMatrix::iterator IntMatrix::begin()
+    {
+        return iterator(this, 0);
+    }
+
+    IntMatrix::iterator IntMatrix::end()
+    {
+        return iterator(this,(*this).size());
+    }
+    IntMatrix::iterator::iterator(const IntMatrix* intMatrix, int index) :
+        intMatrix(intMatrix),index(index){ }
+
+    int& IntMatrix::iterator::operator*() const
+    {
+        return intMatrix->data[index];
+    }
+
+    IntMatrix::iterator& IntMatrix::iterator::operator++()
+    {
+        ++index;
+        return *this;
+    }
+
+    IntMatrix::iterator IntMatrix::iterator::operator++(int)
+    {
+        iterator result = *this;
+        ++*this;
+        return result; 
+    }
+
+    bool IntMatrix::iterator::operator==(const iterator& i) const 
+    {
+        //assert(intMatrix == i.intMatrix);
+        return index == i.index;
+    }
+
+    bool IntMatrix::iterator::operator!=(const iterator& i) const 
+    {
+        return !(*this == i);
+    }
+
+
 }// namespace mtm
