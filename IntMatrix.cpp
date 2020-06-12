@@ -82,13 +82,11 @@ namespace mtm
         IntMatrix matrix = IntMatrix(dim);
         int height = this->IntMatrix::height();
         int width = this->IntMatrix::width();
-        for(int i = 0 ; i < height ; i++)
+        for(int n = 0; n < width*height; n++) 
         {
-            for(int j = 0 ; j < width ; j++)
-            {
-                matrix.data[height*i + j] = this->data[width*j + i];
-                            
-            }
+            int i = n / width;
+            int j = n % width;
+            matrix.data[n] = this->data[height*j + i];           
         }
         return matrix;
     }
@@ -102,7 +100,7 @@ namespace mtm
         {
             for(int j = 0 ; j < width ; j++)
             {
-                matrix.data[height*(i - 1) + j] = -1*(this->data[height*(i - 1) + j]);
+                matrix.data[width*i + j] = -1*(this->data[width*i + j ] );
                             
             }
         }
@@ -111,20 +109,13 @@ namespace mtm
 
     int& IntMatrix::operator() (const int row, const int col)
     {
-        return this->data[(this->width())*(row - 1) + col];
-        //return this->data[row*this->width() + col - 1];
+        return this->data[this->width()*row + col];
     }
 
     const int& IntMatrix::operator() (const int row, const int col) const
     {
-        return this->data[(this->width())*(row - 1) + col];
+        return this->data[this->width()*row + col];
     }
-
-
-    /*const int& IntMatrix::operator() (const int row, const int col) const
-    {
-        return this(row, col);
-    }*/
 
     std::ostream& operator<<(std::ostream& os, const IntMatrix& mat)
     {
@@ -134,20 +125,14 @@ namespace mtm
 
     IntMatrix operator+(const IntMatrix& a, const IntMatrix& b)
     {
-        IntMatrix matrix = IntMatrix(a.getDim());
+        IntMatrix matrix = IntMatrix(Dimensions(a.height(), a.width()));
         int height = a.height();        
         int width = a.width();
-        for(int i = 0 ; i < height ; ++i)
+        for(int i = 0 ; i < height ; i++)
         {
-            for(int j = 0 ; j < width ; ++j)
+            for(int j = 0 ; j < width ; j++)
             {
-                std::cout << "sum of " << a(i, j) << " and " << b(i, j) << std::endl;
                 matrix(i, j) = a(i, j) + b(i, j);
-                std::cout << "matrix (" << i << ", " << j << ") equals " << matrix(i, j) << std::endl;
-                if((i == 4) && (j == 1))
-                {
-                    std::cout << printMatrix(matrix.getData(), matrix.getDim());
-                }
             }
         }
         return matrix;
@@ -163,12 +148,12 @@ namespace mtm
         IntMatrix matrix = IntMatrix(a);
         int height = a.height();
         int width = a.width();
-        for(int i = 0 ; i < width ; i++)
+        for(int i = 0 ; i < height ; i++)
         {
-            for(int j = 0 ; j < height ; j++)
-            {
-                matrix(i , j) += b;
-            }
+            for(int j = 0 ; j < width ; j++)
+            {               
+                matrix(i , j) += b;                
+            }        
         }
         return matrix;
     }
@@ -178,18 +163,49 @@ namespace mtm
         return b + a;
     }
 
-    void operator+= (IntMatrix& a, const int b)
+   IntMatrix& operator+= (IntMatrix& a, const int b)
     {
         a = (a + b);
+        return a;
     }
 
-    void operator+=(const int a, IntMatrix& b)
+    IntMatrix& operator+=(const int a, IntMatrix& b)
     {
-        b += a;
+        return b += a;
     }
 
+    IntMatrix operator<(IntMatrix& a, const int b)
+    {
+        int height = a.height();
+        int width = a.width();
+        IntMatrix matrix = IntMatrix(Dimensions(height, width));
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                matrix(i , j) = (matrix(i , j) < b ? 1 : 0);
+            }        
+        }
+        return matrix;
+    }
+
+    //to do:
+    //IntMatrix operator>(const IntMatrix& a, const int b);
     
-    
+
+    /*IntMatrix& IntMatrix::negateMatrix()
+    {
+        int height = this->height();
+        int width = this->width();
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                myThis(i , j) = (this->(i , j) == 0 ? 1 : 0);
+            }        
+        }
+        return *this;
+    }*/
     
     const int* IntMatrix::getData() const
     {
