@@ -248,14 +248,46 @@ namespace mtm
 
     //*************const_iterator********************************************************
 
-    IntMatrix::iterator IntMatrix::begin() const
+    IntMatrix::const_iterator IntMatrix::begin() const
     {
-        return iterator(this, 0);
+        return const_iterator(this, 0);
     }
 
-    IntMatrix::iterator IntMatrix::end() const
+    IntMatrix::const_iterator IntMatrix::end() const
     {
-        return iterator(this,(*this).size());
+        return const_iterator(this,(*this).size());
+    }
+
+    IntMatrix::const_iterator::const_iterator(const IntMatrix* intMatrix, int index) :
+        intMatrix(intMatrix),index(index){ }
+
+    const int& IntMatrix::const_iterator::operator*() const
+    {
+        return intMatrix->data[index];
+    }
+
+    IntMatrix::const_iterator& IntMatrix::const_iterator::operator++()
+    {
+        ++index;
+        return *this;
+    }
+
+    IntMatrix::const_iterator IntMatrix::const_iterator::operator++(int)
+    {
+        const_iterator result = *this;
+        ++*this;
+        return result; 
+    }
+
+    bool IntMatrix::const_iterator::operator==(const const_iterator& i) const 
+    {
+        //assert(intMatrix == i.intMatrix);
+        return index == i.index;
+    }
+
+    bool IntMatrix::const_iterator::operator!=(const const_iterator& i) const 
+    {
+        return !(*this == i);
     }
 
 }// namespace mtm
