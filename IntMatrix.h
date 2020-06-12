@@ -28,9 +28,16 @@ namespace mtm
         const int& operator() (const int row, const int col) const;
         int& operator() (const int row, const int col);
         friend std::ostream& operator<<(std::ostream& os, const IntMatrix& mat);
-        //to check:
+        IntMatrix operator< (const int b);
+        IntMatrix operator==(const int b);
+        IntMatrix operator<=(const int b);
+        IntMatrix operator>(const int b);//negate <=
+        IntMatrix operator>=(const int b);//negate <
+        IntMatrix operator!=(const int b);//negate ==
 
+        //to check:
         //to do:
+
         class iterator;//Capital i?
         
         iterator begin();
@@ -51,16 +58,7 @@ namespace mtm
     IntMatrix& operator+=(const int a, IntMatrix& b);
     
     //to check:
-    IntMatrix operator<(const IntMatrix& a, const int b);    
-
-
     //to do:
-    IntMatrix operator>(const IntMatrix& a, const int b);
-    IntMatrix operator<=(IntMatrix& a, const int b);
-    IntMatrix operator>=(IntMatrix& a, const int b);
-    IntMatrix operator==(IntMatrix& a, const int b);
-    IntMatrix operator!=(IntMatrix& a, const int b);
-
     
     //*************iterator********************************************************
 

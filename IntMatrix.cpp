@@ -29,7 +29,7 @@ namespace mtm
 
     IntMatrix::~IntMatrix()
     {
-        delete data;
+        delete[] data;//verify correctness
     }
 
     IntMatrix& IntMatrix::operator=(const IntMatrix &a)
@@ -163,7 +163,7 @@ namespace mtm
         return b + a;
     }
 
-   IntMatrix& operator+= (IntMatrix& a, const int b)
+    IntMatrix& operator+= (IntMatrix& a, const int b)
     {
         a = (a + b);
         return a;
@@ -174,26 +174,69 @@ namespace mtm
         return b += a;
     }
 
-    IntMatrix operator<(IntMatrix& a, const int b)
+    IntMatrix IntMatrix::operator<(const int b)
     {
-        int height = a.height();
-        int width = a.width();
+        int height = this->height();
+        int width = this->width();
         IntMatrix matrix = IntMatrix(Dimensions(height, width));
         for(int i = 0 ; i < height ; i++)
         {
             for(int j = 0 ; j < width ; j++)
             {               
-                matrix(i , j) = (matrix(i , j) < b ? 1 : 0);
+                matrix(i , j) = ((*this)(i , j) < b ? 1 : 0);
             }        
         }
         return matrix;
     }
 
-    //to do:
-    //IntMatrix operator>(const IntMatrix& a, const int b);
-    
+    IntMatrix IntMatrix::operator==(const int b)
+    {
+        int height = this->height();
+        int width = this->width();
+        IntMatrix matrix = IntMatrix(Dimensions(height, width));
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                matrix(i , j) = ((*this)(i , j) == b ? 1 : 0);
+                std::cout << "element is: " << matrix(i, j) << std::endl;
+            }        
+        }
+        return matrix;
+    }
 
-    /*IntMatrix& IntMatrix::negateMatrix()
+    IntMatrix IntMatrix::operator<=(const int b)
+    {
+        int height = this->height();
+        int width = this->width();
+        IntMatrix matrix = IntMatrix(Dimensions(height, width));
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                matrix(i , j) = ((((*this)(i , j) == b) || (*this)(i , j) < b) ? 1 : 0);
+            }        
+        }
+        return matrix;
+    }
+
+    IntMatrix IntMatrix::operator>(const int b)
+    {
+        return ((*this) <= b).negateMatrix();
+    }
+
+    IntMatrix IntMatrix::operator>=(const int b)
+    {
+        return ((*this) < b).negateMatrix();
+    }
+
+    IntMatrix IntMatrix::operator!=(const int b)
+    {
+        return ((*this) == b).negateMatrix();
+    }
+    //to do:
+    
+    IntMatrix& IntMatrix::negateMatrix()
     {
         int height = this->height();
         int width = this->width();
@@ -201,11 +244,11 @@ namespace mtm
         {
             for(int j = 0 ; j < width ; j++)
             {               
-                myThis(i , j) = (this->(i , j) == 0 ? 1 : 0);
+                (*this)(i , j) = ((*this)(i , j) == 0 ? 1 : 0);
             }        
         }
         return *this;
-    }*/
+    }
     
     const int* IntMatrix::getData() const
     {
