@@ -225,10 +225,11 @@ namespace mtm
         return iterator(this, 0);
     }
 
-    IntMatrix::iterator IntMatrix::end()
+    IntMatrix::iterator IntMatrix::end() 
     {
         return iterator(this,(*this).size());
     }
+
     IntMatrix::iterator::iterator(const IntMatrix* intMatrix, int index) :
         intMatrix(intMatrix),index(index){ }
 
@@ -261,5 +262,48 @@ namespace mtm
         return !(*this == i);
     }
 
+    //*************const_iterator********************************************************
+
+    IntMatrix::const_iterator IntMatrix::begin() const
+    {
+        return const_iterator(this, 0);
+    }
+
+    IntMatrix::const_iterator IntMatrix::end() const
+    {
+        return const_iterator(this,(*this).size());
+    }
+
+    IntMatrix::const_iterator::const_iterator(const IntMatrix* intMatrix, int index) :
+        intMatrix(intMatrix),index(index){ }
+
+    const int& IntMatrix::const_iterator::operator*() const
+    {
+        return intMatrix->data[index];
+    }
+
+    IntMatrix::const_iterator& IntMatrix::const_iterator::operator++()
+    {
+        ++index;
+        return *this;
+    }
+
+    IntMatrix::const_iterator IntMatrix::const_iterator::operator++(int)
+    {
+        const_iterator result = *this;
+        ++*this;
+        return result; 
+    }
+
+    bool IntMatrix::const_iterator::operator==(const const_iterator& i) const 
+    {
+        //assert(intMatrix == i.intMatrix);
+        return index == i.index;
+    }
+
+    bool IntMatrix::const_iterator::operator!=(const const_iterator& i) const 
+    {
+        return !(*this == i);
+    }
 
 }// namespace mtm

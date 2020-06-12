@@ -35,6 +35,11 @@ namespace mtm
         
         iterator begin();
         iterator end(); 
+
+        class const_iterator;//Capital i? 
+        const_iterator begin() const;
+        const_iterator end() const; 
+
     };
 
 
@@ -57,6 +62,8 @@ namespace mtm
     IntMatrix operator!=(IntMatrix& a, const int b);
 
     
+    //*************iterator********************************************************
+
     class IntMatrix::iterator //Capital i?
     {
         const IntMatrix* intMatrix;
@@ -72,7 +79,28 @@ namespace mtm
         bool operator!=(const iterator& it) const;
         iterator(const iterator&) = default;
         iterator& operator=(const iterator&) = default;
+        ~iterator() = default;
     };
+
+    //*************const_iterator********************************************************
+    class IntMatrix::const_iterator //Capital i?
+    {
+        const IntMatrix* const intMatrix;
+        int index;
+        const_iterator(const IntMatrix* const intMatrix, int index);
+        friend class IntMatrix;
+
+    public:
+        const int& operator*() const;
+        const_iterator& operator++();
+        const_iterator operator++(int);
+        bool operator==(const const_iterator& it) const;
+        bool operator!=(const const_iterator& it) const;
+        const_iterator(const const_iterator&) = default;
+        const_iterator& operator=(const const_iterator&) = default;
+        ~const_iterator() = default;
+    };
+
 
 } // namespace mtm
 
