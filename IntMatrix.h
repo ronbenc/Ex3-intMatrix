@@ -33,10 +33,14 @@ namespace mtm
         const int* getData() const;//debug
         const mtm::Dimensions& getDim() const;//debug
 
-        class iterator;//Capital i?
-        
+        class iterator;//Capital i? 
         iterator begin();
         iterator end(); 
+
+        class const_iterator;//Capital i? 
+        iterator begin() const;
+        iterator end() const; 
+
     };
 
 
@@ -52,6 +56,8 @@ namespace mtm
 
     //to do:    
     
+    //*************iterator********************************************************
+
     class IntMatrix::iterator //Capital i?
     {
         const IntMatrix* intMatrix;
@@ -67,6 +73,7 @@ namespace mtm
         bool operator!=(const iterator& it) const;
         iterator(const iterator&) = default;
         iterator& operator=(const iterator&) = default;
+        ~iterator() = default;
     };
 
 } // namespace mtm

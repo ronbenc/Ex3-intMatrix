@@ -209,10 +209,11 @@ namespace mtm
         return iterator(this, 0);
     }
 
-    IntMatrix::iterator IntMatrix::end()
+    IntMatrix::iterator IntMatrix::end() 
     {
         return iterator(this,(*this).size());
     }
+
     IntMatrix::iterator::iterator(const IntMatrix* intMatrix, int index) :
         intMatrix(intMatrix),index(index){ }
 
@@ -245,5 +246,16 @@ namespace mtm
         return !(*this == i);
     }
 
+    //*************const_iterator********************************************************
+
+    IntMatrix::iterator IntMatrix::begin() const
+    {
+        return iterator(this, 0);
+    }
+
+    IntMatrix::iterator IntMatrix::end() const
+    {
+        return iterator(this,(*this).size());
+    }
 
 }// namespace mtm
