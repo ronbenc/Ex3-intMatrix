@@ -34,10 +34,7 @@ namespace mtm
         IntMatrix operator>(const int b);//negate <=
         IntMatrix operator>=(const int b);//negate <
         IntMatrix operator!=(const int b);//negate ==
-
-        //to check:
-        //to do:
-
+ 
         class iterator;//Capital i?
         
         iterator begin();
@@ -49,20 +46,14 @@ namespace mtm
 
     };
 
-
     IntMatrix operator+(const IntMatrix& a, const IntMatrix& b);
     IntMatrix operator-(const IntMatrix& a, const IntMatrix& b);
     IntMatrix operator+(const IntMatrix& a, const int b);
     IntMatrix operator+(const int a, const IntMatrix& b);
     IntMatrix& operator+=(IntMatrix& a, const int b);
     IntMatrix& operator+=(const int a, IntMatrix& b);
-    
-    //to check:
     bool any(const IntMatrix&);
-    bool all(const IntMatrix&);
-    
-    //to do:
-    
+    bool all(const IntMatrix&);    
     
     //*************iterator********************************************************
 

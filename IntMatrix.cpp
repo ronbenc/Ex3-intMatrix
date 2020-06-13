@@ -54,7 +54,7 @@ namespace mtm
             {
                 if(i == j)
                 {
-                    returnMat.data[n*i+j] = 1;
+                    returnMat(i , i) = 1;                    
                 }
             }
         }
@@ -198,8 +198,7 @@ namespace mtm
         {
             for(int j = 0 ; j < width ; j++)
             {               
-                matrix(i , j) = ((*this)(i , j) == b ? 1 : 0);
-                std::cout << "element is: " << matrix(i, j) << std::endl;
+                matrix(i , j) = ((*this)(i , j) == b ? 1 : 0);                
             }        
         }
         return matrix;
