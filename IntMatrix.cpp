@@ -100,7 +100,7 @@ namespace mtm
         {
             for(int j = 0 ; j < width ; j++)
             {
-                matrix.data[width*i + j] = -1*(this->data[width*i + j ] );
+                matrix(i, j) = -1*((*this)(i, j));
                             
             }
         }
@@ -218,6 +218,42 @@ namespace mtm
             }        
         }
         return matrix;
+    }
+
+    bool any(const IntMatrix& a)
+    {
+        int height = a.height();
+        int width = a.width();
+        bool res = false;
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                if(a(i , j) != 0)
+                {
+                    res = true;
+                }
+            }
+        }
+        return res;
+    }
+
+    bool all(const IntMatrix& a)
+    {
+        int height = a.height();
+        int width = a.width();
+        bool res = true;
+        for(int i = 0 ; i < height ; i++)
+        {
+            for(int j = 0 ; j < width ; j++)
+            {               
+                if(a(i , j) == 0)
+                {
+                    res = false;
+                }
+            }
+        }
+        return res;
     }
 
     IntMatrix IntMatrix::operator>(const int b)

@@ -58,7 +58,11 @@ namespace mtm
     IntMatrix& operator+=(const int a, IntMatrix& b);
     
     //to check:
+    bool any(const IntMatrix&);
+    bool all(const IntMatrix&);
+    
     //to do:
+    
     
     //*************iterator********************************************************
 
