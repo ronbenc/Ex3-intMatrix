@@ -28,12 +28,12 @@ namespace mtm
         const int& operator() (const int row, const int col) const;
         int& operator() (const int row, const int col);
         friend std::ostream& operator<<(std::ostream& os, const IntMatrix& mat);
-        IntMatrix operator< (const int b);
-        IntMatrix operator==(const int b);
-        IntMatrix operator<=(const int b);
-        IntMatrix operator>(const int b);//negate <=
-        IntMatrix operator>=(const int b);//negate <
-        IntMatrix operator!=(const int b);//negate ==
+        IntMatrix operator< (const int b) const;
+        IntMatrix operator==(const int b) const;
+        IntMatrix operator<=(const int b) const;
+        IntMatrix operator>(const int b) const;//negate <=
+        IntMatrix operator>=(const int b) const;//negate <
+        IntMatrix operator!=(const int b) const;//negate ==
  
         class iterator;//Capital i?
         
@@ -53,7 +53,7 @@ namespace mtm
     IntMatrix& operator+=(IntMatrix& a, const int b);
     IntMatrix& operator+=(const int a, IntMatrix& b);
     bool any(const IntMatrix&);
-    bool all(const IntMatrix&);    
+    bool all(const IntMatrix&);
     
     //*************iterator********************************************************
 

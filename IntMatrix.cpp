@@ -174,7 +174,7 @@ namespace mtm
         return b += a;
     }
 
-    IntMatrix IntMatrix::operator<(const int b)
+    IntMatrix IntMatrix::operator<(const int b) const
     {
         int height = this->height();
         int width = this->width();
@@ -189,7 +189,7 @@ namespace mtm
         return matrix;
     }
 
-    IntMatrix IntMatrix::operator==(const int b)
+    IntMatrix IntMatrix::operator==(const int b) const
     {
         int height = this->height();
         int width = this->width();
@@ -204,7 +204,7 @@ namespace mtm
         return matrix;
     }
 
-    IntMatrix IntMatrix::operator<=(const int b)
+    IntMatrix IntMatrix::operator<=(const int b) const
     {
         int height = this->height();
         int width = this->width();
@@ -217,6 +217,21 @@ namespace mtm
             }        
         }
         return matrix;
+    }
+
+    IntMatrix IntMatrix::operator>(const int b) const
+    {
+        return ((*this) <= b).negateMatrix();
+    }
+
+    IntMatrix IntMatrix::operator>=(const int b) const
+    {
+        return ((*this) < b).negateMatrix();
+    }
+
+    IntMatrix IntMatrix::operator!=(const int b) const
+    {
+        return ((*this) == b).negateMatrix();
     }
 
     bool any(const IntMatrix& a)
@@ -255,22 +270,6 @@ namespace mtm
         return res;
     }
 
-    IntMatrix IntMatrix::operator>(const int b)
-    {
-        return ((*this) <= b).negateMatrix();
-    }
-
-    IntMatrix IntMatrix::operator>=(const int b)
-    {
-        return ((*this) < b).negateMatrix();
-    }
-
-    IntMatrix IntMatrix::operator!=(const int b)
-    {
-        return ((*this) == b).negateMatrix();
-    }
-    //to do:
-    
     IntMatrix& IntMatrix::negateMatrix()
     {
         int height = this->height();
