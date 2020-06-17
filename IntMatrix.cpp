@@ -38,8 +38,6 @@ namespace mtm
         {
             return *this;
         }
-        delete[] data;
-        data = new int[a.element_num];
         dim = a.dim;
         element_num = a.element_num;
         {
