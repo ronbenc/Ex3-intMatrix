@@ -35,12 +35,11 @@ namespace mtm
         IntMatrix operator>=(const int b) const;//negate <
         IntMatrix operator!=(const int b) const;//negate ==
  
-        class iterator;//Capital i?
-        
+        class iterator;
         iterator begin();
         iterator end(); 
 
-        class const_iterator;//Capital i? 
+        class const_iterator;
         const_iterator begin() const;
         const_iterator end() const; 
 
@@ -57,7 +56,7 @@ namespace mtm
     
     //*************iterator********************************************************
 
-    class IntMatrix::iterator //Capital i?
+    class IntMatrix::iterator
     {
         const IntMatrix* intMatrix;
         int index;
@@ -76,7 +75,7 @@ namespace mtm
     };
 
     //*************const_iterator********************************************************
-    class IntMatrix::const_iterator //Capital i?
+    class IntMatrix::const_iterator
     {
         const IntMatrix* const intMatrix;
         int index;
