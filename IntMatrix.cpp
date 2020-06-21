@@ -90,11 +90,23 @@ namespace mtm
         int width = this->IntMatrix::width();
         for(int n = 0; n < width*height; n++) 
         {
-            int i = n / width;
-            int j = n % width;
-            matrix.data[n] = this->data[height*j + i];           
+            int i = n / height;
+            int j = n % height;
+            matrix.data[n] = this->data[width*j + i];           
         }
         return matrix;
+
+        // Dimensions dim (this->dim.getCol(), this->dim.getRow());
+        // IntMatrix matrix = IntMatrix(dim);
+        // int height = this->IntMatrix::height();
+        // int width = this->IntMatrix::width();
+        // for(int n = 0; n < width*height; n++) 
+        // {
+        //     int i = n / width;
+        //     int j = n % width;
+        //     matrix.data[n] = this->data[height*j + i];           
+        // }
+        // return matrix;
     }
 
     IntMatrix IntMatrix::operator-() const
