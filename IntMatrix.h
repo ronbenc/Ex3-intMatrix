@@ -29,7 +29,7 @@ namespace mtm
         int width() const;
         //get number of elements in matrix
         int size() const;
-        //returns a new matrix set to a given matrix
+        //returns a new matrix set to a given matrix's transpose
         IntMatrix transpose() const;
         //returns a new matrix with the negative elements of a given matrix
         IntMatrix operator-() const;
@@ -39,17 +39,17 @@ namespace mtm
         int& operator() (const int row, const int col);
         //output operator
         friend std::ostream& operator<<(std::ostream& os, const IntMatrix& mat);
-        //returns a new boolean matrix, that contains for each element boolean variable defining whether each element meets condition < b
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition < b
         IntMatrix operator< (const int b) const;
-        //returns a new boolean matrix, that contains for each element boolean variable defining whether each element meets condition == b
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition == b
         IntMatrix operator==(const int b) const;
-        //returns a new boolean matrix, that contains for each element boolean variable defining whether each element meets condition <= b
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition <= b
         IntMatrix operator<=(const int b) const;
-        //returns a new boolean matrix, that contains for each element boolean variable defining whether each element meets condition > b
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition > b
         IntMatrix operator>(const int b) const;
-        //returns a new boolean matrix, that contains for each element boolean variable defining whether each element meets condition >= b
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition >= b
         IntMatrix operator>=(const int b) const;
-        //returns a new boolean matrix, that contains for each element boolean variable defining whether each element meets condition != b
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition != b
         IntMatrix operator!=(const int b) const;
  
         //an itertor class to iterate over matrices elements
