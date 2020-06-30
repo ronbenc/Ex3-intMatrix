@@ -88,9 +88,9 @@ namespace mtm
         int width = this->IntMatrix::width();
         for(int n = 0; n < width*height; n++) 
         {
-            int i = n / width;
-            int j = n % width;
-            matrix.data[n] = this->data[height*j + i];           
+            int i = n / height;
+            int j = n % height;
+            matrix.data[n] = this->data[width*j + i];           
         }
         return matrix;
     }
@@ -123,7 +123,7 @@ namespace mtm
 
     std::ostream& operator<<(std::ostream& os, const IntMatrix& mat)
     {
-        os << printMatrix(mat.data, mat.dim) << std::endl;
+        os << printMatrix(mat.data, mat.dim);
         return os;
     }
 
