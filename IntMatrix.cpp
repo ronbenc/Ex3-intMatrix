@@ -40,6 +40,8 @@ namespace mtm
         }
         dim = a.dim;
         element_num = a.element_num;
+        delete[] data;
+        data = new int[a.element_num];
         {
             for (int i = 0; i < element_num; i++)
             {
