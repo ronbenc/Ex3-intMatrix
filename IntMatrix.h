@@ -10,8 +10,6 @@ namespace mtm
         Dimensions dim;
         int element_num;
         int* data;
-        const int* getData() const;
-        const mtm::Dimensions& getDim() const;
         IntMatrix& negateMatrix();
 
         public:

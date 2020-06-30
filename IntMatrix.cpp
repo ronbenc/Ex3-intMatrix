@@ -284,17 +284,6 @@ namespace mtm
         return *this;
     }
     
-    const int* IntMatrix::getData() const
-    {
-        return this->data;
-    }
-
-    const mtm::Dimensions& IntMatrix::getDim() const
-    {
-        return this->dim;
-    }
-
-
     //*************iterator********************************************************
 
     IntMatrix::iterator IntMatrix::begin()
