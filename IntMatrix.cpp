@@ -54,13 +54,7 @@ namespace mtm
         IntMatrix returnMat = IntMatrix({n, n});
         for(int i = 0 ; i < n ; i++)
         {
-            for(int j = 0 ; j < n ; j++)
-            {
-                if(i == j)
-                {
-                    returnMat(i , i) = 1;                    
-                }
-            }
+            returnMat(i , i) = 1;            
         }
         return returnMat;
     }
