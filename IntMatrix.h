@@ -67,7 +67,7 @@ namespace mtm
         //set iterator to the first element in a constant matrix
         const_iterator begin() const;
 
-        //set iterator to the end of a cnstant matrix
+        //set iterator to the end of a constant matrix
         const_iterator end() const; 
 
     };
@@ -141,19 +141,19 @@ namespace mtm
         //advance iterator to next element in a matrix (postfix)
         const_iterator operator++(int);
 
-        //true if iterator are equal iterators. false otherwise
+        //true if iterators are equal. false otherwise
         bool operator==(const const_iterator& it) const;
 
-        //true if iterator are not equal iterators. false otherwise
+        //true if iterators are not equal iterators. false otherwise
         bool operator!=(const const_iterator& it) const;
 
-        //iterator constructor
+        //const iterator constructor
         const_iterator(const const_iterator&) = default;
 
-        //iterator assigment operator
+        //const iterator assigment operator
         const_iterator& operator=(const const_iterator&) = default;
 
-        //iterator destructor
+        //const iterator destructor
         ~const_iterator() = default;
     };
 } // namespace mtm
