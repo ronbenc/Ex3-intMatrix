@@ -224,8 +224,6 @@ namespace mtm
 
     bool any(const IntMatrix& a)
     {
-        int height = a.height();
-        int width = a.width();
         bool res = false;
         for(const int& element : a)
         {
@@ -239,8 +237,6 @@ namespace mtm
 
     bool all(const IntMatrix& a)
     {
-        int height = a.height();
-        int width = a.width();
         bool res = true;
         for(const int& element : a)
         {
