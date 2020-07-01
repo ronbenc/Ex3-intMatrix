@@ -10,30 +10,47 @@ namespace mtm
         Dimensions dim;
         int element_num;
         int* data;
-        const int* getData() const;
-        const mtm::Dimensions& getDim() const;
         IntMatrix& negateMatrix();
 
         public:
+        //default c'tor - given matrix dimensions, default value 0
         IntMatrix(const Dimensions dimensions, const int init_val = 0);
+        //copy c'tor - construct new copy of a given matrix
         IntMatrix(const IntMatrix &IntMatrix);
+        //default d'tor
         ~IntMatrix();
+        //assignment operator between two intMatrix types
         IntMatrix& operator=(const IntMatrix& a);
+        //create new matrix which it's diagonal elements initialized to n, else 0
         static IntMatrix Identity(int n);
+        //get a matrix height
         int height() const;
+        //get a matrix width
         int width() const;
+        //get number of elements in matrix
         int size() const;
+        //returns a new matrix set to a given matrix's transpose
         IntMatrix transpose() const;
+        //returns a new matrix with the negative elements of a given matrix
         IntMatrix operator-() const;
+        //read a given matrix (i , j) element
         const int& operator() (const int row, const int col) const;
+        //access (with write permission) a given matrix (i , j) element
         int& operator() (const int row, const int col);
+        //output operator
         friend std::ostream& operator<<(std::ostream& os, const IntMatrix& mat);
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition < b
         IntMatrix operator< (const int b) const;
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition == b
         IntMatrix operator==(const int b) const;
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition <= b
         IntMatrix operator<=(const int b) const;
-        IntMatrix operator>(const int b) const;//negate <=
-        IntMatrix operator>=(const int b) const;//negate <
-        IntMatrix operator!=(const int b) const;//negate ==
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition > b
+        IntMatrix operator>(const int b) const;
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition >= b
+        IntMatrix operator>=(const int b) const;
+        //returns a new boolean matrix, that contains (i , j) boolean variables defining whether (i , j) element meets condition != b
+        IntMatrix operator!=(const int b) const;
  
         //an itertor class to iterate over matrices elements
         class iterator;
@@ -55,13 +72,21 @@ namespace mtm
 
     };
 
+    //returns a new matrix - sum of two matrix
     IntMatrix operator+(const IntMatrix& a, const IntMatrix& b);
+    //returns a new matrix - subtraction of two matrix
     IntMatrix operator-(const IntMatrix& a, const IntMatrix& b);
+    //returns a new matrix - sum of a and static matrix which all objects initialized to b
     IntMatrix operator+(const IntMatrix& a, const int b);
+    //returns a new matrix - sum of a and static matrix which all objects initialized to b
     IntMatrix operator+(const int a, const IntMatrix& b);
+    //returns a by reference - sum of a and static matrix which all objects initialized to b
     IntMatrix& operator+=(IntMatrix& a, const int b);
+    //returns a by reference - sum of a and static matrix which all objects initialized to b
     IntMatrix& operator+=(const int a, IntMatrix& b);
+    //returns true if and only if at least one of elements is 0, false otherwise
     bool any(const IntMatrix&);
+    //returns true if and only if all elements are 0, false otherwise
     bool all(const IntMatrix&);
     
     //*************iterator********************************************************

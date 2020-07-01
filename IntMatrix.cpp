@@ -38,10 +38,10 @@ namespace mtm
         {
             return *this;
         }
-        delete[] data;
-        data = new int[a.element_num];
         dim = a.dim;
         element_num = a.element_num;
+        delete[] data;
+        data = new int[a.element_num];
         {
             for (int i = 0; i < element_num; i++)
             {
@@ -56,13 +56,7 @@ namespace mtm
         IntMatrix returnMat = IntMatrix({n, n});
         for(int i = 0 ; i < n ; i++)
         {
-            for(int j = 0 ; j < n ; j++)
-            {
-                if(i == j)
-                {
-                    returnMat(i , i) = 1;                    
-                }
-            }
+            returnMat(i , i) = 1;            
         }
         return returnMat;
     }
@@ -290,17 +284,6 @@ namespace mtm
         return *this;
     }
     
-    const int* IntMatrix::getData() const
-    {
-        return this->data;
-    }
-
-    const mtm::Dimensions& IntMatrix::getDim() const
-    {
-        return this->dim;
-    }
-
-
     //*************iterator********************************************************
 
     IntMatrix::iterator IntMatrix::begin()
