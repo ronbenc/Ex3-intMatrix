@@ -29,7 +29,7 @@ namespace mtm
 
     IntMatrix::~IntMatrix()
     {
-        delete[] data;//verify correctness
+        delete[] data;
     }
 
     IntMatrix& IntMatrix::operator=(const IntMatrix &a)
