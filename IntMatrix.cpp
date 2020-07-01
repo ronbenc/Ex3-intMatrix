@@ -1,6 +1,5 @@
 #include "IntMatrix.h"
 #include "Auxiliaries.h"
-//#include <assert.h>
 
 namespace mtm
 {
@@ -29,7 +28,7 @@ namespace mtm
 
     IntMatrix::~IntMatrix()
     {
-        delete[] data;//verify correctness
+        delete[] data;
     }
 
     IntMatrix& IntMatrix::operator=(const IntMatrix &a)
@@ -94,15 +93,9 @@ namespace mtm
     IntMatrix IntMatrix::operator-() const
     {
         IntMatrix matrix = IntMatrix(*this);
-        int height = this->IntMatrix::height();
-        int width = this->IntMatrix::width();
-        for(int i = 0 ; i < height ; i++)
+        for(int& element : matrix)
         {
-            for(int j = 0 ; j < width ; j++)
-            {
-                matrix(i, j) = -1*((*this)(i, j));
-                            
-            }
+            element *= -1;
         }
         return matrix;
     }
@@ -146,14 +139,9 @@ namespace mtm
     IntMatrix operator+(const IntMatrix& a, const int b)
     {
         IntMatrix matrix = IntMatrix(a);
-        int height = a.height();
-        int width = a.width();
-        for(int i = 0 ; i < height ; i++)
+        for(int& element : matrix)
         {
-            for(int j = 0 ; j < width ; j++)
-            {               
-                matrix(i , j) += b;                
-            }        
+            element +=  b;
         }
         return matrix;
     }
@@ -178,7 +166,7 @@ namespace mtm
     {
         int height = this->height();
         int width = this->width();
-        IntMatrix matrix = IntMatrix(Dimensions(height, width));
+        IntMatrix matrix = IntMatrix(dim);
         for(int i = 0 ; i < height ; i++)
         {
             for(int j = 0 ; j < width ; j++)
@@ -239,15 +227,12 @@ namespace mtm
         int height = a.height();
         int width = a.width();
         bool res = false;
-        for(int i = 0 ; i < height ; i++)
+        for(const int& element : a)
         {
-            for(int j = 0 ; j < width ; j++)
-            {               
-                if(a(i , j) != 0)
-                {
-                    res = true;
-                }
-            }
+            if(element != 0)
+            {
+                res = true;
+            }           
         }
         return res;
     }
@@ -257,29 +242,21 @@ namespace mtm
         int height = a.height();
         int width = a.width();
         bool res = true;
-        for(int i = 0 ; i < height ; i++)
+        for(const int& element : a)
         {
-            for(int j = 0 ; j < width ; j++)
-            {               
-                if(a(i , j) == 0)
-                {
-                    res = false;
-                }
-            }
+            if(element == 0)
+            {
+                res = false;
+            }           
         }
         return res;
     }
 
     IntMatrix& IntMatrix::negateMatrix()
     {
-        int height = this->height();
-        int width = this->width();
-        for(int i = 0 ; i < height ; i++)
+        for(int& element : *this)
         {
-            for(int j = 0 ; j < width ; j++)
-            {               
-                (*this)(i , j) = ((*this)(i , j) == 0 ? 1 : 0);
-            }        
+            element = 1 - element;
         }
         return *this;
     }
@@ -319,7 +296,6 @@ namespace mtm
 
     bool IntMatrix::iterator::operator==(const iterator& i) const 
     {
-        //assert(intMatrix == i.intMatrix);
         return index == i.index;
     }
 
@@ -363,7 +339,6 @@ namespace mtm
 
     bool IntMatrix::const_iterator::operator==(const const_iterator& i) const 
     {
-        //assert(intMatrix == i.intMatrix);
         return index == i.index;
     }
 
